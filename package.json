@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.1",
+    "typescript": "^5.5.2",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2"
+  },
+  "name": "simple-login",
+  "version": "1.0.0",
+  "description": "Just simple web login with expressjs + mysql",
+  "main": "./src/app.ts",
+  "scripts": {
+    "dev": "npx ts-node ./src/app.ts",
+    "dev-reload": "npx nodemon ts-node ./src/app.ts",
+    "build": "npx tsc --build",
+    "start": "node ./build/app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

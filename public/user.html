@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Display name: </td>
+            <td><span id="name"></span></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><span id="email"></span></td>
+        </tr>
+        <tr>
+            <td>Username: </td>
+            <td><span id="username"></span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="logout-button" value="Logout">
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+    document.getElementById("logout-button").onclick = () => {
+        fetch("/api/logout", { method: "POST" }).then(res => window.location = "/");
+    }
+
+    fetch("/api/user", { method: "GET" }).then((res) => {
+        if (res.ok) {
+            res.json().then((data) => {
+                document.getElementById("name").innerText = data.user.display_name;
+                document.getElementById("email").innerText = data.user.email;
+                document.getElementById("username").innerText = data.user.username;
+            });
+        } else {
+            window.location = "/";
+        }
+    });
+</script>
+</html>

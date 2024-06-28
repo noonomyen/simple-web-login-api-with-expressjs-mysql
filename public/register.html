@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Display name: </td>
+            <td><input type="text" id="name"></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="email" id="email"></td>
+        </tr>
+        <tr>
+            <td>Username: </td>
+            <td><input type="text" id="username"></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="password" id="password"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="login-button" value="Login">
+                <input type="button" id="register-button" value="Register">
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+    document.getElementById("login-button").onclick = () => window.location = "/login.html";
+    document.getElementById("register-button").onclick = () => {
+        fetch("/api/register", {
+            method: "PUT",
+            headers: new Headers({"content-type": "application/json"}),
+            body: JSON.stringify({
+                display_name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            })
+        }).then((res) => {
+            if (res.ok) {
+                alert("OK");
+                window.location = "/";
+            } else {
+                res.json().then(data => alert(data.message));
+            }
+        });
+    }
+</script>
+</html>
